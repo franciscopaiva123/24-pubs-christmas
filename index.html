@@ -193,7 +193,15 @@
   .seg button.on{background:var(--black);color:var(--white);border-color:var(--black)}
   .slider-row{display:flex;align-items:center;gap:14px}
   .slider-row input[type=range]{flex:1;accent-color:var(--black)}
-  .slider-val{font-size:15px;font-weight:600;min-width:66px;text-align:right}
+  .val-edit{display:flex;align-items:baseline;gap:4px;min-width:74px;justify-content:flex-end}
+  .val-edit input{
+    width:44px;border:none;border-bottom:1px solid var(--line);background:none;
+    font-family:inherit;font-size:16px;font-weight:600;text-align:right;color:var(--ink);padding:2px 0;
+  }
+  .val-edit input:focus{outline:none;border-bottom-color:var(--black)}
+  .val-edit input::-webkit-outer-spin-button,.val-edit input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+  .val-edit input[type=number]{-moz-appearance:textfield}
+  .val-edit .unit{font-size:13px;color:var(--muted)}
   .modal-submit{
     width:100%;height:52px;background:var(--black);color:var(--white);border:none;
     border-radius:10px;font-family:inherit;font-size:16px;font-weight:500;cursor:pointer;margin-top:6px;
@@ -327,24 +335,24 @@
       <div class="q">
         <label>Height</label>
         <div class="slider-row">
-          <input type="range" id="f-height" min="140" max="210" value="175" oninput="syncVal('height')">
-          <span class="slider-val" id="v-height">175 cm</span>
+          <input type="range" id="f-height" min="140" max="210" value="175">
+          <div class="val-edit"><input type="number" id="n-height" min="140" max="210" value="175"><span class="unit">cm</span></div>
         </div>
       </div>
 
       <div class="q">
         <label>Weight</label>
         <div class="slider-row">
-          <input type="range" id="f-weight" min="40" max="130" value="72" oninput="syncVal('weight')">
-          <span class="slider-val" id="v-weight">72 kg</span>
+          <input type="range" id="f-weight" min="40" max="130" value="72">
+          <div class="val-edit"><input type="number" id="n-weight" min="40" max="130" value="72"><span class="unit">kg</span></div>
         </div>
       </div>
 
       <div class="q">
         <label>Age</label>
         <div class="slider-row">
-          <input type="range" id="f-age" min="12" max="80" value="28" oninput="syncVal('age')">
-          <span class="slider-val" id="v-age">28</span>
+          <input type="range" id="f-age" min="12" max="80" value="28">
+          <div class="val-edit"><input type="number" id="n-age" min="12" max="80" value="28"><span class="unit">yrs</span></div>
         </div>
       </div>
 
@@ -402,11 +410,25 @@
     });
   });
 
-  function syncVal(key){
-    var v = document.getElementById('f-'+key).value;
-    var unit = key==='height' ? ' cm' : key==='weight' ? ' kg' : '';
-    document.getElementById('v-'+key).textContent = v + unit;
+  // keep each slider and its editable number in sync (drag OR type)
+  function linkPair(key, min, max){
+    var range = document.getElementById('f-'+key);
+    var num   = document.getElementById('n-'+key);
+    range.addEventListener('input', function(){ num.value = range.value; });
+    num.addEventListener('input', function(){
+      if(num.value === '') return;      // allow the field to be cleared while typing
+      range.value = num.value;          // range clamps to its own min/max
+    });
+    num.addEventListener('change', function(){   // on blur / Enter, normalise the typed value
+      var v = parseInt(num.value, 10);
+      if(isNaN(v)) v = parseInt(range.value, 10);
+      v = Math.max(min, Math.min(max, v));
+      num.value = v; range.value = v;
+    });
   }
+  linkPair('height', 140, 210);
+  linkPair('weight', 40, 130);
+  linkPair('age', 12, 80);
 
   function openFinder(){ document.getElementById('overlay').classList.add('open'); }
   function closeFinder(){ document.getElementById('overlay').classList.remove('open'); }
@@ -448,9 +470,9 @@
     var age    = +document.getElementById('f-age').value;
     var r = recommend(choice.gender, height, weight, age, choice.fit);
 
-    // highlight the matching size button
+    // select the recommended size in the picker
     document.querySelectorAll('.size').forEach(function(b){
-      b.classList.toggle('reco-hit', b.dataset.size === r.size);
+      b.classList.toggle('selected', b.dataset.size === r.size);
     });
 
     var reco = document.getElementById('reco');
