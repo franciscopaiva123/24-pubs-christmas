@@ -1,344 +1,470 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>24 Pubs of Christmas</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Banana Bread Shirt – Focus Surfwear</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#000;
+    --white:#fff;
+    --banner-text:#e3a6a0;   /* salmon text on the black bar */
+    --ink:#1a1a1a;
+    --muted:#6b6b6b;
+    --line:#dcdcdc;
+    --line-soft:#ededed;
+    --sold:#b9b9b9;
+    --cookie-bg:#eef3ee;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    font-family:'Poppins',system-ui,sans-serif;
+    color:var(--ink);
+    background:var(--white);
+    line-height:1.5;
+    padding-bottom:70px; /* space for cookie bar */
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
 
-        body {
-            font-family: 'Cormorant Garamond', serif;
-            background-color: #f5f5f5;
-            color: #1a1a1a;
-            overflow-x: hidden;
-        }
+  /* ---------- top banner ---------- */
+  .topbar{
+    background:var(--black);
+    color:var(--banner-text);
+    font-size:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    padding:11px 24px;
+  }
+  .topbar .promo{font-weight:500;letter-spacing:.2px}
+  .topbar .selectors{
+    position:absolute;right:24px;top:50%;transform:translateY(-50%);
+    display:flex;gap:26px;align-items:center;
+  }
+  .topbar .sel{display:flex;align-items:center;gap:7px;cursor:pointer;color:var(--banner-text)}
+  .topbar .sel svg{width:11px;height:11px}
+  @media(max-width:900px){ .topbar .selectors{display:none} }
 
-        /* Top Navigation */
-        .top-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            display: flex;
-            justify-content: space-between;
-            padding: 20px 40px;
-            background-color: #f5f5f5;
-            z-index: 100;
-            border-bottom: 1px solid #e0e0e0;
-        }
+  /* ---------- header ---------- */
+  header{
+    border-bottom:1px solid var(--line-soft);
+    padding:22px 40px;
+  }
+  .header-inner{
+    max-width:1400px;margin:0 auto;
+    display:flex;align-items:center;justify-content:space-between;gap:24px;
+  }
+  .logo{
+    font-weight:700;font-size:34px;letter-spacing:2px;line-height:1;
+    display:flex;flex-direction:column;align-items:flex-start;
+  }
+  .logo small{font-size:8px;letter-spacing:6px;font-weight:500;color:var(--muted);margin-top:2px}
+  nav{display:flex;gap:34px;font-size:15px;font-weight:500;flex:1;justify-content:center}
+  nav a:hover{opacity:.6}
+  .icons{display:flex;gap:22px;align-items:center}
+  .icons svg{width:22px;height:22px;stroke:var(--ink);fill:none;stroke-width:1.6;cursor:pointer}
+  @media(max-width:900px){
+    header{padding:16px 20px}
+    nav{display:none}
+    .logo{font-size:26px}
+  }
 
-        .top-nav a {
-            color: #1a1a1a;
-            text-decoration: none;
-            font-size: 14px;
-            letter-spacing: 0.5px;
-            transition: opacity 0.3s;
-        }
+  /* ---------- product layout ---------- */
+  .product{
+    max-width:1400px;margin:0 auto;padding:40px;
+    display:grid;grid-template-columns:1.15fr 1fr;gap:56px;align-items:start;
+  }
+  .gallery{display:flex;flex-direction:column;gap:16px}
+  .gallery img{width:100%;border-radius:2px;background:#f4f4f4}
 
-        .top-nav a:hover {
-            opacity: 0.6;
-        }
+  .info{position:sticky;top:24px}
+  .vendor{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+  .title{font-size:52px;font-weight:600;line-height:1.05;margin-bottom:22px}
+  .price-row{display:flex;align-items:center;gap:14px;margin-bottom:10px}
+  .price{font-size:24px;font-weight:500}
+  .badge{
+    background:var(--black);color:var(--white);
+    font-size:13px;padding:5px 13px;border-radius:20px;font-weight:500;
+  }
+  .tax{font-size:14px;color:var(--muted);margin-bottom:28px}
+  .tax a{text-decoration:underline}
 
-        .nav-left,
-        .nav-right {
-            display: flex;
-            gap: 20px;
-        }
+  .field-label{font-size:15px;margin-bottom:12px}
+  .sizes{display:flex;gap:12px;margin-bottom:30px;flex-wrap:wrap}
+  .size{
+    min-width:62px;height:52px;padding:0 16px;
+    border:1px solid var(--line);background:var(--white);
+    border-radius:26px;font-family:inherit;font-size:15px;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;position:relative;
+    transition:.15s;
+  }
+  .size:hover{border-color:#9a9a9a}
+  .size.selected{background:var(--black);color:var(--white);border-color:var(--black)}
+  /* sold-out variant styling: struck through */
+  .size.sold{color:var(--sold)}
+  .size.sold.selected{color:var(--white)}
+  .size.sold::after{
+    content:"";position:absolute;left:14%;right:14%;top:50%;height:1px;
+    background:currentColor;opacity:.7;transform:rotate(-12deg);
+  }
 
-        /* Logo */
-        .logo {
-            position: fixed;
-            top: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 101;
-            font-size: 18px;
-            font-weight: 300;
-            letter-spacing: -1px;
-            text-transform: uppercase;
-            display: none;
-        }
+  .qty-wrap{margin-bottom:26px}
+  .qty{
+    display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:8px;
+    height:52px;overflow:hidden;
+  }
+  .qty button{
+    width:48px;height:100%;border:none;background:none;font-size:20px;cursor:pointer;color:var(--ink);
+  }
+  .qty input{
+    width:56px;height:100%;border:none;text-align:center;font-family:inherit;font-size:16px;
+    -moz-appearance:textfield;
+  }
+  .qty input::-webkit-outer-spin-button,.qty input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
 
-        /* Main Container */
-        .container {
-            margin-top: 80px;
-            padding: 0;
-        }
+  .btn{
+    width:100%;height:56px;border-radius:8px;font-family:inherit;font-size:16px;font-weight:500;
+    cursor:pointer;margin-bottom:14px;
+  }
+  .btn-sold{background:var(--white);border:1px solid var(--line);color:var(--muted);cursor:not-allowed}
+  .btn-buy{background:var(--black);border:1px solid var(--black);color:var(--white)}
+  .btn-buy:hover{opacity:.88}
 
-        /* Title Section - Centered */
-        .title-container {
-            position: sticky;
-            top: 60px;
-            width: 100%;
-            height: 180px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 0;
-            background-color: #f5f5f5;
-            z-index: 50;
-            transition: all 0.3s ease;
-        }
+  .features{margin-top:30px;padding-left:20px;font-size:16px;line-height:2}
+  .features strong{font-weight:600}
 
-        .title-container.scrolled {
-            height: 80px;
-        }
+  .share{margin-top:26px;display:flex;align-items:center;gap:8px;font-size:15px;font-weight:500;cursor:pointer}
+  .share svg{width:17px;height:17px;stroke:var(--ink);fill:none;stroke-width:1.6}
 
-        .title-split {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 0 60px;
-        }
+  @media(max-width:900px){
+    .product{grid-template-columns:1fr;gap:32px;padding:24px 20px}
+    .info{position:static}
+    .title{font-size:38px}
+  }
 
-        .title-center {
-            font-size: clamp(55px, 9vw, 115px);
-            font-weight: 300;
-            letter-spacing: -3px;
-            line-height: 0.9;
-            text-transform: uppercase;
-            text-align: center;
-            transition: font-size 0.3s ease;
-        }
+  /* ---------- size finder ---------- */
+  .size-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+  .finder-link{
+    background:none;border:none;font-family:inherit;font-size:14px;font-weight:500;
+    cursor:pointer;display:inline-flex;align-items:center;gap:6px;color:var(--ink);
+    border-bottom:1px solid var(--ink);padding:0 0 1px;line-height:1.2;
+  }
+  .finder-link:hover{opacity:.6}
 
-        .title-container.scrolled .title-center {
-            font-size: clamp(30px, 5vw, 50px);
-        }
+  .size.reco-hit{box-shadow:0 0 0 2px var(--black);border-color:var(--black)}
 
-        /* Map Section */
-        .map-section {
-            width: 100%;
-            height: calc(100vh - 260px);
-            min-height: 500px;
-            position: relative;
-            overflow: hidden;
-        }
+  .reco{
+    background:#f6f6f6;border:1px solid var(--line);border-radius:10px;
+    padding:16px 18px;margin:-14px 0 26px;font-size:15px;
+  }
+  .reco b{font-size:17px}
+  .reco .reco-note{color:var(--muted);font-size:13.5px;margin-top:5px}
 
-        .map-section iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: block;
-            filter: grayscale(0%);
-        }
+  /* modal */
+  .overlay{
+    position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;
+    display:none;align-items:center;justify-content:center;padding:20px;
+  }
+  .overlay.open{display:flex}
+  .modal{
+    background:var(--white);border-radius:16px;width:100%;max-width:460px;
+    max-height:92vh;overflow:auto;padding:30px 30px 26px;position:relative;
+  }
+  .modal h2{font-size:24px;font-weight:600;margin-bottom:4px}
+  .modal .sub{font-size:14px;color:var(--muted);margin-bottom:24px}
+  .modal-close{
+    position:absolute;top:18px;right:18px;background:none;border:none;font-size:26px;
+    cursor:pointer;line-height:1;color:var(--muted);
+  }
+  .q{margin-bottom:20px}
+  .q > label{display:block;font-size:14px;font-weight:500;margin-bottom:9px}
+  .seg{display:flex;gap:8px;flex-wrap:wrap}
+  .seg button{
+    flex:1;min-width:80px;padding:11px 8px;border:1px solid var(--line);background:var(--white);
+    border-radius:10px;font-family:inherit;font-size:14px;cursor:pointer;transition:.12s;
+  }
+  .seg button:hover{border-color:#9a9a9a}
+  .seg button.on{background:var(--black);color:var(--white);border-color:var(--black)}
+  .slider-row{display:flex;align-items:center;gap:14px}
+  .slider-row input[type=range]{flex:1;accent-color:var(--black)}
+  .slider-val{font-size:15px;font-weight:600;min-width:66px;text-align:right}
+  .modal-submit{
+    width:100%;height:52px;background:var(--black);color:var(--white);border:none;
+    border-radius:10px;font-family:inherit;font-size:16px;font-weight:500;cursor:pointer;margin-top:6px;
+  }
+  .modal-submit:hover{opacity:.88}
+  .modal-hint{font-size:12px;color:var(--muted);text-align:center;margin-top:12px;line-height:1.5}
 
-        /* Rules Section */
-        .rules-section {
-            width: 100%;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 80px 60px 100px;
-        }
-
-        .rules-title {
-            font-size: clamp(40px, 8vw, 80px);
-            font-weight: 300;
-            letter-spacing: -2px;
-            text-transform: uppercase;
-            text-align: center;
-            margin-bottom: 60px;
-            line-height: 1;
-        }
-
-        .rules-list {
-            list-style: none;
-            counter-reset: rule-counter;
-        }
-
-        .rule-item {
-            font-size: clamp(18px, 2.5vw, 28px);
-            font-weight: 400;
-            line-height: 1.6;
-            margin-bottom: 35px;
-            padding-left: 80px;
-            position: relative;
-            counter-increment: rule-counter;
-        }
-
-        .rule-item::before {
-            content: counter(rule-counter);
-            position: absolute;
-            left: 0;
-            top: 0;
-            font-size: clamp(16px, 2vw, 24px);
-            font-weight: 300;
-            color: #666;
-            width: 50px;
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .title-center {
-                font-size: clamp(60px, 10vw, 120px);
-            }
-
-            .title-split {
-                padding: 0 40px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .top-nav {
-                padding: 15px 20px;
-                flex-wrap: wrap;
-            }
-
-            .nav-left,
-            .nav-right {
-                gap: 15px;
-            }
-
-            .top-nav a {
-                font-size: 12px;
-            }
-
-            .logo {
-                font-size: 14px;
-                top: 12px;
-            }
-
-            .title-container {
-                height: 120px;
-                top: 50px;
-            }
-
-            .title-container.scrolled {
-                height: 70px;
-            }
-
-            .title-split {
-                padding: 0 20px;
-            }
-
-            .title-center {
-                font-size: clamp(45px, 12vw, 90px);
-            }
-
-            .title-container.scrolled .title-center {
-                font-size: clamp(25px, 8vw, 45px);
-            }
-
-            .map-section {
-                height: calc(100vh - 200px);
-                min-height: 400px;
-            }
-
-            .rules-section {
-                padding: 60px 30px 80px;
-            }
-
-            .rule-item {
-                padding-left: 60px;
-                margin-bottom: 30px;
-            }
-
-            .rule-item::before {
-                width: 40px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .title-center {
-                font-size: clamp(28px, 12vw, 60px);
-            }
-
-            .rules-section {
-                padding: 50px 20px 70px;
-            }
-
-            .rule-item {
-                padding-left: 50px;
-            }
-        }
-    </style>
+  /* ---------- cookie bar ---------- */
+  .cookie{
+    position:fixed;left:0;right:0;bottom:0;background:var(--cookie-bg);
+    display:flex;align-items:center;justify-content:space-between;gap:20px;
+    padding:16px 34px;font-size:16px;z-index:50;flex-wrap:wrap;
+  }
+  .cookie a{text-decoration:underline}
+  .cookie-btns{display:flex;gap:12px}
+  .cookie-btns button{
+    font-family:inherit;font-size:15px;padding:12px 26px;border-radius:8px;cursor:pointer;border:1px solid var(--black);
+  }
+  .cookie-btns .prefs{background:var(--white)}
+  .cookie-btns .accept{background:var(--black);color:var(--white)}
+  @media(max-width:900px){ .cookie{padding:14px 18px;font-size:14px} }
+</style>
 </head>
 <body>
-    <!-- Top Navigation -->
-    <nav class="top-nav">
-        <div class="nav-left">
-        </div>
-        <div class="nav-right">
-        </div>
-    </nav>
 
-    <!-- Logo -->
-    <div class="logo" id="scrollLogo">24 Pubs of Christmas</div>
+  <!-- top banner -->
+  <div class="topbar">
+    <span class="promo">Free Shiping to Portugal over 100€</span>
+    <div class="selectors">
+      <span class="sel">Portugal | EUR €
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </span>
+      <span class="sel">Português (portugal)
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </span>
+    </div>
+  </div>
 
-    <!-- Main Container -->
-    <div class="container">
-        <!-- Title with Centered Typography -->
-        <div class="title-container">
-            <div class="title-split">
-                <div class="title-center">🎄24 Pubs of Christmas 2025🎄</div>
-            </div>
-        </div>
+  <!-- header -->
+  <header>
+    <div class="header-inner">
+      <a href="https://focussurfwear.com/" class="logo">FOCUS<small>SURFWEAR</small></a>
+      <nav>
+        <a href="https://focussurfwear.com/">PÁGINA INICIAL</a>
+        <a href="https://focussurfwear.com/collections/all">PRODUTOS</a>
+        <a href="https://focussurfwear.com/pages/contact">CONTACTOS</a>
+        <a href="https://focussurfwear.com/pages/about-us">ABOUT US</a>
+      </nav>
+      <div class="icons">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+      </div>
+    </div>
+  </header>
 
-        <!-- Map Section -->
-        <div class="map-section">
-            <iframe src="https://www.google.com/maps/d/embed?mid=132UJYHbe0XiWKyARj8t9r8_bZqRGUZw&ehbc=2E312F"
-                    width="640"
-                    height="480"
-                    allowfullscreen=""
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
-        </div>
-
-        <!-- Rules Section -->
-        <div class="rules-section">
-            <h2 class="rules-title">General Rules</h2>
-            <p style="font-size: clamp(22px, 3vw, 32px); text-align: center; margin-bottom: 15px; font-weight: 500;">Start at Amor Records - Point A</p>
-            <p style="font-size: clamp(22px, 3vw, 32px); text-align: center; margin-bottom: 15px; font-weight: 500;">20/12/25 - 15:00h</p>
-            <p style="font-size: clamp(18px, 2.5vw, 26px); text-align: center; margin-bottom: 50px; font-weight: 400; line-height: 1.6;">To know where we are call:<br>Mart: <a href="tel:+41794123129" style="color: #1a1a1a; text-decoration: none; border-bottom: 1px solid #1a1a1a;">+41 79 412 31 29</a><br>Fifi: <a href="tel:+351935023569" style="color: #1a1a1a; text-decoration: none; border-bottom: 1px solid #1a1a1a;">+351 935 023 569</a></p>
-            
-            <ul class="rules-list">
-                <li class="rule-item">Start at the first pub and finish at the last. No skipping allowed.</li>
-                <li class="rule-item">One drink minimum at each location. Pace yourself wisely. (Or not)</li>
-                <li class="rule-item">Look out for your mates. Nobody gets left behind.</li>
-                <li class="rule-item">Take photos, make memories, but live in the moment.</li>
-                <li class="rule-item">Everytime you see a "monhe" get a beer.</li>
-                <li class="rule-item">Cash is king. Bring cash.</li>
-                <li class="rule-item">If you break a rule... Chugg a drink.</li>
-                <li class="rule-item">What happens on the crawl, stays on the crawl. Cheers!</li>
-            </ul>
-        </div>
-
-        <div class="rules-section">
-            <h2 class="rules-title">Bar Rules - One for each bar.</h2>
-            <ul class="rules-list">
-                <li class="rule-item"> <b>Lefties Bar</b>: Only drink with the left hand. </li>
-                <li class="rule-item"><b>Accent Bar</b>: Speak with a different accent.</li>
-                <li class="rule-item"><b>Get-a-round Bar</b>: Choose a friend and buy him/her a drink.</li>
-                <li class="rule-item"><b>Rock-Paper-Scissors Bar</b>: Play Rock-Paper-Scissors with a friend. If you lose, get the round. </li>
-                <li class="rule-item"><b>Random Card Bar</b>: In this bar the bartender chooses a random card to pay the beers. (4 people max)</li>
-                <li class="rule-item"><b>Penalty Bar</b>: Choose a friend the last to chugg a beer, buys two beers.</li>
-                <li class="rule-item"><b>Auchan</b>: Walk into the Auchan BLIND and choose a random drink.</li>
-                <li class="rule-item"><b>No Beer Bar</b>: Self explanatory...</li>
-            </ul>
-        </div>
+  <!-- product -->
+  <main class="product">
+    <div class="gallery">
+      <img src="https://focussurfwear.com/cdn/shop/files/quadrados-05_4.png?v=1753108063&width=1445" alt="Banana Bread Shirt, worn">
+      <img src="https://focussurfwear.com/cdn/shop/files/quadrados-04_3.png?v=1753108063&width=1445" alt="Banana Bread Shirt, folded collar detail">
     </div>
 
-    <script>
-        // Shrink the title when user scrolls down
-        window.addEventListener('scroll', function() {
-            const titleContainer = document.querySelector('.title-container');
+    <div class="info">
+      <div class="vendor">Focus Surfwear</div>
+      <h1 class="title">Banana Bread Shirt</h1>
 
-            // Add 'scrolled' class when user scrolls down
-            if (window.scrollY > 50) {
-                titleContainer.classList.add('scrolled');
-            } else {
-                titleContainer.classList.remove('scrolled');
-            }
-        });
-    </script>
+      <div class="price-row">
+        <span class="price">€49,00 EUR</span>
+        <span class="badge">Esgotado</span>
+      </div>
+      <p class="tax">Impostos incluídos. <a href="https://focussurfwear.com/policies/shipping-policy">Envio</a> calculado na finalização da compra.</p>
+
+      <div class="size-head">
+        <span class="field-label" style="margin:0">Tamanho</span>
+        <button class="finder-link" onclick="openFinder()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-6 9 6-9 6-9-6z"/><path d="M3 15l9 6 9-6"/></svg>
+          Find my size
+        </button>
+      </div>
+      <div class="sizes" id="sizes">
+        <button class="size sold selected" data-size="S">S</button>
+        <button class="size sold" data-size="M">M</button>
+        <button class="size sold" data-size="L">L</button>
+        <button class="size sold" data-size="XL">XL</button>
+      </div>
+      <div id="reco" class="reco" hidden></div>
+
+      <div class="qty-wrap">
+        <div class="field-label">Quantidade</div>
+        <div class="qty">
+          <button onclick="stepQty(-1)" aria-label="Diminuir">−</button>
+          <input id="qty" type="number" value="1" min="1">
+          <button onclick="stepQty(1)" aria-label="Aumentar">+</button>
+        </div>
+      </div>
+
+      <button class="btn btn-sold" disabled>Esgotado</button>
+      <button class="btn btn-buy">Compre já!</button>
+
+      <ul class="features">
+        <li>Short-sleeved shirt</li>
+        <li>100% Cotton</li>
+        <li>Unisex</li>
+        <li>Made in <strong>Portugal</strong></li>
+      </ul>
+
+      <div class="share">
+        <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>
+        Share
+      </div>
+    </div>
+  </main>
+
+  <!-- size finder modal -->
+  <div class="overlay" id="overlay" onclick="if(event.target===this)closeFinder()">
+    <div class="modal" role="dialog" aria-modal="true" aria-label="Find my size">
+      <button class="modal-close" onclick="closeFinder()" aria-label="Close">×</button>
+      <h2>Find my size</h2>
+      <p class="sub">Answer five quick questions for a recommendation.</p>
+
+      <div class="q">
+        <label>Gender</label>
+        <div class="seg" data-group="gender">
+          <button data-val="female">Female</button>
+          <button data-val="male">Male</button>
+          <button data-val="unisex" class="on">Unisex</button>
+        </div>
+      </div>
+
+      <div class="q">
+        <label>Height</label>
+        <div class="slider-row">
+          <input type="range" id="f-height" min="140" max="210" value="175" oninput="syncVal('height')">
+          <span class="slider-val" id="v-height">175 cm</span>
+        </div>
+      </div>
+
+      <div class="q">
+        <label>Weight</label>
+        <div class="slider-row">
+          <input type="range" id="f-weight" min="40" max="130" value="72" oninput="syncVal('weight')">
+          <span class="slider-val" id="v-weight">72 kg</span>
+        </div>
+      </div>
+
+      <div class="q">
+        <label>Age</label>
+        <div class="slider-row">
+          <input type="range" id="f-age" min="12" max="80" value="28" oninput="syncVal('age')">
+          <span class="slider-val" id="v-age">28</span>
+        </div>
+      </div>
+
+      <div class="q">
+        <label>How do you like your shirts to fit?</label>
+        <div class="seg" data-group="fit">
+          <button data-val="fitted">Fitted</button>
+          <button data-val="regular" class="on">Regular</button>
+          <button data-val="baggy">Baggy</button>
+        </div>
+      </div>
+
+      <button class="modal-submit" onclick="runRecommendation()">Get my size</button>
+      <p class="modal-hint">Guidance only — based on typical measurements for this cut. Fit can vary from person to person.</p>
+    </div>
+  </div>
+
+  <!-- cookie bar -->
+  <div class="cookie" id="cookie">
+    <span>This website uses cookies to ensure you get the best experience on our website. <a href="#">Privacy Policy</a></span>
+    <div class="cookie-btns">
+      <button class="prefs" onclick="hideCookie()">Preferences</button>
+      <button class="accept" onclick="hideCookie()">Accept</button>
+    </div>
+  </div>
+
+<script>
+  // size selection
+  document.querySelectorAll('.size').forEach(function(b){
+    b.addEventListener('click', function(){
+      document.querySelectorAll('.size').forEach(function(x){x.classList.remove('selected')});
+      b.classList.add('selected');
+    });
+  });
+  // quantity stepper
+  function stepQty(d){
+    var i = document.getElementById('qty');
+    var v = Math.max(1, (parseInt(i.value,10)||1) + d);
+    i.value = v;
+  }
+  function hideCookie(){ document.getElementById('cookie').style.display='none'; }
+
+  /* ---------- size finder ---------- */
+  var SIZES = ['S','M','L','XL'];
+  var choice = { gender:'unisex', fit:'regular' };
+
+  // segmented-control selection
+  document.querySelectorAll('.seg').forEach(function(group){
+    group.querySelectorAll('button').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        group.querySelectorAll('button').forEach(function(b){b.classList.remove('on')});
+        btn.classList.add('on');
+        choice[group.dataset.group] = btn.dataset.val;
+      });
+    });
+  });
+
+  function syncVal(key){
+    var v = document.getElementById('f-'+key).value;
+    var unit = key==='height' ? ' cm' : key==='weight' ? ' kg' : '';
+    document.getElementById('v-'+key).textContent = v + unit;
+  }
+
+  function openFinder(){ document.getElementById('overlay').classList.add('open'); }
+  function closeFinder(){ document.getElementById('overlay').classList.remove('open'); }
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeFinder(); });
+
+  function recommend(gender, height, weight, age, fit){
+    // Weight is the primary signal: linear map so ~55kg -> S centre (0), ~98kg -> XL centre (3)
+    var idx = (weight - 55) / ((98 - 55) / 3);
+    // Height nudge: taller frames trend one notch up, shorter down (relative to 175cm)
+    idx += (height - 175) * 0.02;
+    // Gender on a unisex cut: female frames usually sit a little smaller
+    if (gender === 'female') idx -= 0.4;
+    // Fit preference
+    if (fit === 'baggy')  idx += 1;
+    if (fit === 'fitted') idx -= 0.7;
+
+    var rounded = Math.round(idx);
+    if (rounded < 0) rounded = 0;
+    if (rounded > 3) rounded = 3;
+    var size = SIZES[rounded];
+
+    // Is it close to a boundary? offer an alternative
+    var alt = null;
+    var frac = idx - rounded;
+    if (frac > 0.28 && rounded < 3)      alt = SIZES[rounded + 1] + ' for a roomier fit';
+    else if (frac < -0.28 && rounded > 0) alt = SIZES[rounded - 1] + ' for a closer fit';
+
+    // Age is informational only
+    var ageNote = '';
+    if (age < 16)      ageNote = 'Still growing? You may want to size up if it needs to last.';
+    else if (age >= 65) ageNote = '';
+
+    return { size: size, alt: alt, ageNote: ageNote };
+  }
+
+  function runRecommendation(){
+    var height = +document.getElementById('f-height').value;
+    var weight = +document.getElementById('f-weight').value;
+    var age    = +document.getElementById('f-age').value;
+    var r = recommend(choice.gender, height, weight, age, choice.fit);
+
+    // highlight the matching size button
+    document.querySelectorAll('.size').forEach(function(b){
+      b.classList.toggle('reco-hit', b.dataset.size === r.size);
+    });
+
+    var reco = document.getElementById('reco');
+    var line = 'We recommend size <b>' + r.size + '</b>';
+    if (r.alt) line += ' — or ' + r.alt + '.';
+    else line += '.';
+    var note = r.ageNote ? '<div class="reco-note">' + r.ageNote + '</div>'
+                         : '<div class="reco-note">Based on your height, weight and preferred fit.</div>';
+    reco.innerHTML = line + note;
+    reco.hidden = false;
+
+    closeFinder();
+    reco.scrollIntoView({ behavior:'smooth', block:'center' });
+  }
+</script>
 </body>
 </html>
